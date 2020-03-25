@@ -1,0 +1,24 @@
+{
+  "name": "gajira-get-issue",
+  "version": "1.0.0",
+  "description": "Finds a Jira Issue from string",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cybervoid/gajira-get-issue.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cybervoid/gajira-get-issue/issues"
+  },
+  "homepage": "https://github.com/cybervoid/gajira-get-issue#readme",
+  "dependencies": {
+    "@actions/core": "^1.2.3",
+    "@actions/github": "^2.1.1"
+  }
+}
