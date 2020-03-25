@@ -1,7 +1,7 @@
-name: 'Hello World'
-description: 'Greet someone and record the time'
+name: 'Find Jira Issue'
+description: 'Find Jira issue from string'
 inputs:
-  who-to-greet:  # id of input
+  input-text:  # id of input
     description: 'Who to greet'
     required: true
     default: 'World'
@@ -10,4 +10,4 @@ outputs:
     description: 'The time we greeted you'
 runs:
   using: 'node12'
-  main: 'dist/index.js'
+  main: '../dist/index.js'

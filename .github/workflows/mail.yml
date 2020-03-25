@@ -1,18 +1,18 @@
 on: [push]
 
 jobs:
-  hello_world_job:
+  find-issue:
     runs-on: ubuntu-latest
-    name: A job to say hello
+    name: Find Issue
     steps:
       # To use this repository's private action, you must check out the repository
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Hello world action step
+      - name: get issue
         uses: ./ # Uses an action in the root directory
-        id: hello
+        id: find
         with:
-          who-to-greet: 'Mona the Octocat'
+          input-text: 'Mona PMB-123-the Octocat'
       # Use the output from the `hello` step
       - name: Get the output time
-        run: echo "The time was ${{ steps.hello.outputs.time }}"
+        run: echo "The time was ${{ steps.find.outputs.time }}"
