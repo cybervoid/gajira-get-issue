@@ -19893,6 +19893,11 @@ const core = __webpack_require__(827);
 const github = __webpack_require__(148);
 const fs = __webpack_require__(747);
 
+// Get the JSON webhook payload for the event that triggered the workflow
+const payload = JSON.stringify(github.context.payload, undefined, 2)
+console.log(`The event payload: ${payload}`);
+
+
 try {
     const inputText = core.getInput('input-text');
     let regex = new RegExp('.+\\/(.*-\\d+)', 'gim');
@@ -19912,9 +19917,6 @@ try {
     } else {
         core.setFailed("Issue not found on: " + inputText);
     }
-    // Get the JSON webhook payload for the event that triggered the workflow
-    // const payload = JSON.stringify(github.context.payload, undefined, 2)
-    // console.log(`The event payload: ${payload}`);
 } catch (error) {
     core.setFailed(error.message);
 }
