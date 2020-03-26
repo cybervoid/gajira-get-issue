@@ -13,7 +13,7 @@ try {
         console.log("Issue not found");
     }
 
-    // console.log(`Input text: ${inputText}!`);
+    //console.log(`Input text: ${inputText}!`);
 
     const time = (new Date()).toTimeString();
     core.setOutput("time", time);
