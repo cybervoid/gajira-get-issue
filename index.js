@@ -14,7 +14,7 @@ try {
         const fileName = 'config.yml';
         try {
             fs.mkdirSync(filePath, {recursive: true});
-            fs.appendFileSync(filePath + fileName, 'issue=' + issue[1] + '\r\n')
+            fs.appendFileSync(filePath + fileName, 'issue: ' + issue[1] + '\r\n')
         } catch (e) {
             core.setFailed('Error trying to create the file ' + fileName);
         }
