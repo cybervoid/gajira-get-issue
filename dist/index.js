@@ -19915,7 +19915,24 @@ try {
             core.setFailed('Error trying to create the file ' + fileName);
         }
     } else {
-        core.setFailed("Issue not found on: " + inputText);
+        console.log("Issue not found on provided input: " + inputText);
+        //try to search in github object
+        const message = payload.commits.message;
+        issue = regex.exec(message);
+        if (issue && Array.isArray(issue)) {
+            console.log("Issue found in github object, Jira number: " + issue[1]);
+            core.setOutput("issue", issue[1]);
+            const filePath = __webpack_require__(87).homedir() + '/jira/';
+            const fileName = 'config.yml';
+            try {
+                fs.mkdirSync(filePath, {recursive: true});
+                fs.appendFileSync(filePath + fileName, 'issue: ' + issue[1] + '\r\n')
+            } catch (e) {
+                core.setFailed('Error trying to create the file ' + fileName);
+            }
+        } else {
+            core.setFailed("");
+        }
     }
 } catch (error) {
     core.setFailed(error.message);
