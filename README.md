@@ -2,24 +2,40 @@
 Finds a Jira Issue from string
 
 
-# Hello world javascript action
+For examples on how to use this, check out the [gajira-demo](https://github.com/atlassian/gajira-demo) repository
+> ##### Only supports Jira Cloud. Does not support Jira Server (hosted)
 
-This action prints "Hello World" or "Hello" + the name of a person to greet to the log.
+## Usage
 
-## Inputs
+> ##### Note: this action requires [Jira Login Action](https://github.com/marketplace/actions/jira-login)
 
-### `who-to-greet`
+To find an issue key inside commit messages:
+```yaml
+- name: Find in commit messages
+  uses: atlassian/gajira-find-issue-key@master
+  with:
+    from: commits
+```
 
-**Required** The name of the person to greet. Default `"World"`.
+----
+## Action Spec:
 
-## Outputs
+### Environment variables
+- None
 
-### `time`
+### Inputs
+- `description` - Provide jsonpath for the GitHub event to extract issue from
+- `string` - Provide a string to extract issue key from
+- `from` - Find from predefined place (should be either 'branch', or 'commits', default is 'commits')
 
-The time we greeted you.
+### Outputs
+- `issue` - Key of the found issue
 
-## Example usage
+### Reads fields from config file at $HOME/jira/config.yml
+- None
 
-uses: actions/hello-world-javascript-action@v1
-with:
-  who-to-greet: 'Mona the Octocat'
+### Writes fields to config file at $HOME/jira/config.yml
+- `issue` - a key of a found issue
+
+### Writes fields to CLI config file at $HOME/.jira.d/config.yml
+- `issue` - a key of a found issue
