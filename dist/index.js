@@ -19901,10 +19901,10 @@ try {
     if (issue && Array.isArray(issue)) {
       console.log("Issue found, Jira number: " + issue[1]);
     } else {
-        console.log("Issue not found");
+        console.log("Issue not found on: " + inputText);
     }
 
-    // console.log(`Input text: ${inputText}!`);
+    //console.log(`Input text: ${inputText}!`);
 
     const time = (new Date()).toTimeString();
     core.setOutput("time", time);
