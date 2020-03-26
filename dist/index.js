@@ -19904,14 +19904,14 @@ try {
         console.log("Issue not found");
     }
 
-a    // console.log(`Input text: ${inputText}!`);
+    // console.log(`Input text: ${inputText}!`);
 
     const time = (new Date()).toTimeString();
     core.setOutput("time", time);
 
     // Get the JSON webhook payload for the event that triggered the workflow
     const payload = JSON.stringify(github.context.payload, undefined, 2)
-    console.log(`The event payload1: ${payload}`);
+    console.log(`The event payload: ${payload}`);
 } catch (error) {
     core.setFailed(error.message);
 }
