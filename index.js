@@ -9,7 +9,7 @@ try {
 
     if (issue && Array.isArray(issue)) {
         console.log("Issue found, Jira number: " + issue[1]);
-
+        core.setOutput("issue", issue[1]);
         const filePath = require('os').homedir() + '/jira/';
         const fileName = 'config.yml';
         try {

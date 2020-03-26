@@ -19900,7 +19900,7 @@ try {
 
     if (issue && Array.isArray(issue)) {
         console.log("Issue found, Jira number: " + issue[1]);
-
+        core.setOutput("issue", issue[1]);
         const filePath = __webpack_require__(87).homedir() + '/jira/';
         const fileName = 'config.yml';
         try {
