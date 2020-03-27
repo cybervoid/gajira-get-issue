@@ -1,20 +1,19 @@
 # gajira-get-issue
 Finds a Jira Issue from string
 
-
-For examples on how to use this, check out the [gajira-demo](https://github.com/atlassian/gajira-demo) repository
-> ##### Only supports Jira Cloud. Does not support Jira Server (hosted)
-
 ## Usage
+To easily find Jira issue from commits or branch, I recommend [Jira Find issue key](https://github.com/marketplace/actions/jira-find-issue-key), the official Jira's release action. What's different with this action,
+if you still need to find an issue when a PR is opened or even when the PR is merged, this action will receive any string and try to find it there and if it's not found, then it will go to the github object and try to find
+it from messages created by github.
 
-> ##### Note: this action requires [Jira Login Action](https://github.com/marketplace/actions/jira-login)
+> ##### Note: this action is compatible with the official Jira actions [Jira Login Action](https://github.com/marketplace/actions/jira-login)
 
 To find an issue key inside commit messages:
 ```yaml
 - name: Find in commit messages
-  uses: atlassian/gajira-find-issue-key@master
+  uses: cybervoid/gajira-get-issue@v1.0
   with:
-    from: commits
+    input-text: ${{ github.ref }}
 ```
 
 ----
@@ -24,9 +23,7 @@ To find an issue key inside commit messages:
 - None
 
 ### Inputs
-- `description` - Provide jsonpath for the GitHub event to extract issue from
-- `string` - Provide a string to extract issue key from
-- `from` - Find from predefined place (should be either 'branch', or 'commits', default is 'commits')
+- `input-text` - Provide any string to extract issue from
 
 ### Outputs
 - `issue` - Key of the found issue

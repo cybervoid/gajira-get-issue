@@ -1,13 +1,9 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
 const fs = require('fs');
-
-// Get the JSON webhook payload for the event that triggered the workflow
-// const payload = JSON.stringify(github.context.payload, undefined, 2)
-// console.log(`The event payload: ${payload}`);
-// console.log('Element is ', github.context.payload.commits.head.ref);
-
 const inputText = core.getInput('input-text');
+
+
 try {
     const issue = findIssue(inputText);
     if (issue) {
