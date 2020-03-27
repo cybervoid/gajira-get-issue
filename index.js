@@ -23,7 +23,6 @@ try {
                 return true;
             }
         });
-        console.log("Pepe", res);
     }
 } catch (error) {
     core.setFailed(error.message);
