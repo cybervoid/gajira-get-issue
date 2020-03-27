@@ -12,7 +12,8 @@ jobs:
         uses: ./ # Uses an action in the root directory
         id: find
         with:
-          input-text: ${{ github.ref }}
+          input-text: 'featurePMB-1169'
+#          input-text: ${{ github.ref }}
       # Use the output from the `hello` step
       - name: Get the output time
-        run: echo "The time was ${{ steps.find.outputs.time }}"
+        run: echo "The time was ${{ steps.find.outputs.issue }}"
