@@ -3,7 +3,6 @@ const github = require('@actions/github');
 const fs = require('fs');
 const inputText = core.getInput('input-text');
 
-
 try {
     const issue = findIssue(inputText);
     if (issue) {
@@ -12,13 +11,15 @@ try {
         console.log("Issue not found on provided input: " + inputText);
         //try to search in github object
         const commitMessages = github.context.payload.commits;
-        let res = commitMessages.some( function (element) {
-            const issue = findIssue(element.message);
-            if (issue){
-                issueFound(issue[1]);
-                return true;
-            }
-        });
+        if (commitMessages) {
+            let res = commitMessages.some(function (element) {
+                const issue = findIssue(element.message);
+                if (issue) {
+                    issueFound(issue[1]);
+                    return true;
+                }
+            });
+        }
     }
 } catch (error) {
     core.setFailed(error.message);
@@ -26,7 +27,7 @@ try {
 
 function findIssue(text) {
     let regex = new RegExp('.+\\/(.*-\\d+)', 'gim');
-    return  regex.exec(text);
+    return regex.exec(text);
 }
 
 function issueFound(issue) {

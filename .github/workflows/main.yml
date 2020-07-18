@@ -5,14 +5,11 @@ jobs:
     runs-on: ubuntu-latest
     name: Find Issue
     steps:
-      # To use this repository's private action, you must check out the repository
-      - name: Checkout
-        uses: actions/checkout@v2
       - name: get issue
         uses: ./ # Uses an action in the root directory
         id: find
         with:
-          input-text: 'featurePMB-1169'
+          input-text: 'feature/PMB-1169'
 #          input-text: ${{ github.ref }}
       # Use the output from the `hello` step
       - name: Get the output time

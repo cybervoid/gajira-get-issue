@@ -19892,13 +19892,8 @@ module.exports = require("events");
 const core = __webpack_require__(827);
 const github = __webpack_require__(148);
 const fs = __webpack_require__(747);
-
-// Get the JSON webhook payload for the event that triggered the workflow
-// const payload = JSON.stringify(github.context.payload, undefined, 2)
-// console.log(`The event payload: ${payload}`);
-// console.log('Element is ', github.context.payload.commits.head.ref);
-
 const inputText = core.getInput('input-text');
+
 try {
     const issue = findIssue(inputText);
     if (issue) {
@@ -19907,14 +19902,15 @@ try {
         console.log("Issue not found on provided input: " + inputText);
         //try to search in github object
         const commitMessages = github.context.payload.commits;
-        let res = commitMessages.some( function (element) {
-            const issue = findIssue(element.message);
-            if (issue){
-                issueFound(issue[1]);
-                return true;
-            }
-        });
-        console.log("Pepe", res);
+        if (commitMessages) {
+            let res = commitMessages.some(function (element) {
+                const issue = findIssue(element.message);
+                if (issue) {
+                    issueFound(issue[1]);
+                    return true;
+                }
+            });
+        }
     }
 } catch (error) {
     core.setFailed(error.message);
@@ -19922,7 +19918,7 @@ try {
 
 function findIssue(text) {
     let regex = new RegExp('.+\\/(.*-\\d+)', 'gim');
-    return  regex.exec(text);
+    return regex.exec(text);
 }
 
 function issueFound(issue) {
