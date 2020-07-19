@@ -1,9 +1,10 @@
+name: Tests
+
 on: [push]
 
 jobs:
   find-issue:
     runs-on: ubuntu-latest
-    name: Tests
     steps:
       # To use this repository's private action, you must check out the repository
         - name: Checkout
