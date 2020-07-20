@@ -19908,6 +19908,8 @@ try {
                 if (issue) {
                     issueFound(issue[1]);
                     return true;
+                } else {
+                    core.setOutput("issue", '');
                 }
             });
         }

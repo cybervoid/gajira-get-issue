@@ -17,5 +17,5 @@ jobs:
             input-text: 'feature/PMB-1169'
 
       # Use the output from the `hello` step
-        - name: Get the output time
+        - name: Get the output ticket number
           run: echo "The ticket number is ${{ steps.find.outputs.issue }}"
